@@ -3,182 +3,400 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bellmont College Enrollment Flow</title>
+  <title>Bellmont College Enrollment Lifecycle</title>
   <script src="https://unpkg.com/gojs/release/go.js"></script>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f4f8fb;
+      background-color: #f4f8fb;
     }
-    #myDiagramDiv {
-      height: 850px;
+    .diagram-box {
+      height: 950px;
       background-color: white;
       border: 1px solid #d1d1d1;
       border-radius: 10px;
     }
-    .info-card {
-      background: linear-gradient(135deg, #ffffff, #f8f9fa);
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 20px;
+    .section-header {
+      text-align: center;
+      margin-top: 30px;
       margin-bottom: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .info-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-    .swimlane-title {
       font-weight: 600;
-      margin-top: 10px;
-      color: #2c3e50;
-      display: flex;
-      align-items: center;
-      font-size: 1.2rem;
     }
-    .swimlane-title i {
-      margin-right: 10px;
-      color: #4a90e2;
+    .description, .challenges, .vision {
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      font-size: 16px;
+      color: #333;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     }
     ul {
       padding-left: 20px;
     }
+    .go-node:hover {
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease-in-out;
+    }
+
+    @media (max-width: 768px) {
+  .diagram-box {
+    height: 600px;
+  }
+  .col-md-6 {
+    margin-bottom: 30px;
+  }
+  .challenges, .vision {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+}
   </style>
 </head>
 <body>
-    <div class="container py-5">
-        <h2 class="text-center mb-4">Bellmont College – Enrollment Lifecycle Flow</h2>
-        <div class="row">
-          <!-- Explanation Panel -->
-          <div class="col-md-4">
-            <!-- Bellmont College Section -->
-            <div class="info-card">
-              <h5 class="swimlane-title"><i class="fas fa-school"></i> Bellmont College</h5>
-              <ul>
-                <li>Receives and processes student applications based on defined intake sessions (e.g., September, November, March).</li>
-                <li>After LHU enrollment confirmation, enrolls students internally within the Bellmont Student Information System (SIS).</li>
-                <li>Creates academic groups in SIS and assigns each student to a group; generates Microsoft Teams links for virtual class participation.</li>
-                <li>Manages attendance for online and on-campus classes; receives attendance records back from LHU and imports them into SIS.</li>
-                <li>Imports finalized assessment results from LHU’s Google Sheets into SIS for internal academic tracking.</li>
-                <li>Progresses eligible students to the next academic level at the end of each academic year based on the official pass list from LHU.</li>
-              </ul>
-            </div>
-      
-            <!-- LHU Section -->
-            <div class="info-card">
-              <h5 class="swimlane-title"><i class="fas fa-university"></i> Liverpool Hope University (LHU)</h5>
-              <ul>
-                <li>Receives application documents from Bellmont and enrolls students in their internal system.</li>
-                <li>Maintains the Moodle platform for assessment submissions and manages the central attendance system.</li>
-                <li>Receives attendance either via their portal or Google Sheets; returns validated attendance records to Bellmont's registry team.</li>
-                <li>Conducts internal and external verification of assessments; publishes final marks in University-managed Google Sheets.</li>
-                <li>Issues official pass lists for student progression annually.</li>
-              </ul>
-            </div>
-      
-            <!-- Students Section -->
-            <div class="info-card">
-              <h5 class="swimlane-title"><i class="fas fa-user-graduate"></i> Students</h5>
-              <ul>
-                <li>Submit assessments through LHU’s Moodle platform.</li>
-                <li>Participate in online classes using Microsoft Teams links assigned to their academic group.</li>
-                <li>Progress to the next academic level annually based on assessment outcomes and LHU's progression list.</li>
-              </ul>
-            </div>
+  <div class="container">
+    <h2 class="section-header">Bellmont College – Enrollment Lifecycle</h2>
+
+    <div class="description">
+      <p>This document presents a comparison between the current manual enrollment system and the proposed integrated solution at Bellmont College in partnership with Liverpool Hope University (LHU).</p>
+    </div>
+
+    <div class="row my-4">
+        <!-- Challenges Section -->
+
+        <h4 class="section-header">Current System Challenges vs Proposed Automated Solution</h4>
+
+        <div class="col-md-6">
+          <div class="challenges h-100 shadow-sm p-4 bg-white rounded-3 animate__animated animate__fadeInLeft">
+            <h5 class="text-danger mb-4" style="color: #78011C!important;">🚧 Key Challenges in Current System</h5>
+            <ul class="list-unstyled">
+              <li class="mb-3">
+                <h6><span class="me-2">📊</span><strong>Manual Data Collection</strong></h6>
+                <ul class=" ms-4">
+                  <li>📥 Student information is collected manually through forms or email.</li>
+                  <li>🔁 Results in repeated data entry and poor data consistency.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">🗂️</span><strong>Fragmented File Sharing</strong></h6>
+                <ul class=" ms-4">
+                  <li>📦 Files are zipped and shared via Google Drive or email.</li>
+                  <li>📉 No tracking or visibility once shared externally.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">📉</span><strong>Inaccurate Attendance Tracking</strong></h6>
+                <ul class=" ms-4">
+                  <li>📝 Attendance taken on paper or spreadsheets.</li>
+                  <li>🔍 Discrepancies common due to human errors and delays.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">🔄</span><strong>No Real-Time Synchronization</strong></h6>
+                <ul class=" ms-4">
+                  <li>🧩 Bellmont SIS and LHU SITS function in isolation.</li>
+                  <li>📉 Delays and misalignment across systems.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">📪</span><strong>Lack of Communication Flow</strong></h6>
+                <ul class=" ms-4">
+                  <li>📬 Heavily dependent on back-and-forth emails.</li>
+                  <li>⏱️ Slows down response time and updates.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">⚠️</span><strong>GDPR Vulnerabilities</strong></h6>
+                <ul class="ms-4">
+                  <li>🔓 Files shared on unsecured platforms.</li>
+                  <li>📂 No audit trail or permissions tracking.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">⏳</span><strong>Lack of Automation</strong></h6>
+                <ul class=" ms-4">
+                  <li>👩‍💻 All processes depend on human input.</li>
+                  <li>📉 Increased risk of delay, error, and burnout.</li>
+                </ul>
+              </li>
+            </ul>
+            <p class="mt-4 " style="margin-top: 49px!important;">
+              <strong>🧩 Final Summary:</strong> Current Enrollment Lifecycle is manual, error-prone, and unsustainable. Without integration, it burdens staff, delays student services, and poses compliance risks.
+            </p>
           </div>
+        </div>
       
-          <!-- Diagram Panel -->
-          <div class="col-md-8">
-            <div id="myDiagramDiv"></div>
+        <!-- Vision Section -->
+        <div class="col-md-6">
+          <div class="vision h-100 shadow-sm p-4 bg-white rounded-3 animate__animated animate__fadeInRight">
+            <h5 class="text-success mb-4" style="color: #1C356E!important;">✅ Proposed Unified & Automated System</h5>
+            <ul class="list-unstyled">
+              <li class="mb-3">
+                <h6><span class="me-2">🔗</span><strong>API Integration Between SIS & SITS</strong></h6>
+                <ul class=" ms-4">
+                  <li>📥 <strong>Enrollment API:</strong> Real-time sync of applications and registrations.</li>
+                  <li>📊 <strong>Assessment API:</strong> LHU marks are automatically reflected in SIS.</li>
+                  <li>📆 <strong>Attendance API:</strong> Seamless two-way attendance flow.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">🧭</span><strong>Centralized Student Lifecycle</strong></h6>
+                <ul class=" ms-4">
+                  <li>📎 Submit and track all records from a single dashboard.</li>
+                  <li>📁 No more manual uploads or scattered storage.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">👥</span><strong>Integrated Class Setup</strong></h6>
+                <ul class=" ms-4">
+                  <li>🔗 Teams links generated and distributed automatically.</li>
+                  <li>🎓 Students grouped directly via SIS.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">📅</span><strong>Digital Attendance</strong></h6>
+                <ul class=" ms-4">
+                  <li>🖐️ Marked via Desktop/mobile/tablet and synced instantly.</li>
+                  <li>📤 Sent to LHU without staff intervention.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">📚</span><strong>Assessment Tracking</strong></h6>
+                <ul class=" ms-4">
+                  <li>📝 View Moodle submissions directly in SIS.</li>
+                  <li>🔁 Track feedback and marks automatically.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">⏭️</span><strong>Automated Progression</strong></h6>
+                <ul class=" ms-4">
+                  <li>📈 Final marks trigger next-year enrollment instantly.</li>
+                  <li>📌 Saves staff time and ensures accurate outcomes.</li>
+                </ul>
+              </li>
+              <li class="mb-3">
+                <h6><span class="me-2">🔐</span><strong>GDPR Compliance & Security</strong></h6>
+                <ul class=" ms-4">
+                  <li>🛡️ Secure, encrypted systems with audit logs.</li>
+                  <li>🧾 Permission-based access to protect data.</li>
+                </ul>
+              </li>
+            </ul>
+            <p class="mt-4 ">
+              <strong>🔗 Final Vision:</strong> A fully automated, secure, and GDPR-compliant system where every student interaction is synced in real time—empowering both staff and students with clarity, speed, and confidence.
+            </p>
           </div>
         </div>
       </div>
       
+      
+      
+<br>
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="text-primary text-center mb-3" style="color: #78011C!important;">Current Manual System</h4>
+        <div id="currentDiagram" class="diagram-box"></div>
+      </div>
+      <div class="col-md-6">
+        <h4 class="text-success text-center mb-3" style="color: #1C356E!important;">Proposed Integrated System</h4>
+        <div id="proposedDiagram" class="diagram-box"></div>
+      </div>
+    </div>
+  </div>
 
-<script>
-  function init() {
+  <script>
     const $ = go.GraphObject.make;
-    const myDiagram = $(go.Diagram, "myDiagramDiv", {
-      "undoManager.isEnabled": true,
-      layout: $(go.TreeLayout, { angle: 90, layerSpacing: 50 })
-    });
-
-    myDiagram.nodeTemplate =
-      $(go.Node, "Auto",
-        {
-          shadowVisible: true
-        },
-        $(go.Shape, "RoundedRectangle",
+  
+    function createDiagram(divId, nodeDataArray, linkDataArray, strokeColor, hoverColor) {
+      const diagram = $(go.Diagram, divId, {
+        initialAutoScale: go.Diagram.UniformToFill,
+        layout: $(go.TreeLayout, { angle: 90, layerSpacing: 60 }),
+        "undoManager.isEnabled": true,
+        "animationManager.duration": 800,
+      });
+  
+      diagram.nodeTemplate =
+        $(go.Node, "Auto",
           {
-            fill: "white", strokeWidth: 2, stroke: "#4a90e2"
+            mouseEnter: (e, obj) => obj.findObject("SHAPE").fill = hoverColor,
+            mouseLeave: (e, obj) => obj.findObject("SHAPE").fill = "white",
           },
-          new go.Binding("fill", "color")
-        ),
-        $(go.TextBlock,
-          {
-            margin: 10,
-            wrap: go.TextBlock.WrapFit,
-            width: 220,
-            textAlign: "center",
-            font: "500 14px Segoe UI"
-          },
-          new go.Binding("text", "text")
-        ),
-        {
-          toolTip:
-            $(go.Adornment, "Auto",
-              $(go.Shape, { fill: "#FFFFCC" }),
-              $(go.TextBlock,
-                {
-                  margin: 5,
-                  maxSize: new go.Size(250, NaN),
-                  wrap: go.TextBlock.WrapFit
-                },
-                new go.Binding("text", "description"))
+          $(go.Shape, "RoundedRectangle",
+            {
+              name: "SHAPE",
+              fill: "white",
+              stroke: strokeColor,
+              strokeWidth: 2,
+            }),
+          $(go.Panel, "Vertical",
+            { margin: 14, maxSize: new go.Size(360, NaN) },
+            $(go.TextBlock,
+              {
+                font: "32px Segoe UI",
+                stroke: strokeColor,
+                alignment: go.Spot.Center,
+                margin: new go.Margin(0, 0, 6, 0)
+              },
+              new go.Binding("text", "icon")
+            ),
+            $(go.TextBlock,
+              {
+                font: "bold 20px Segoe UI",
+                stroke: "#333",
+                wrap: go.TextBlock.WrapFit,
+                maxLines: 2,
+                margin: new go.Margin(0, 0, 8, 0),
+                textAlign: "center",
+                maxSize: new go.Size(340, NaN)
+              },
+              new go.Binding("text", "text")
+            ),
+            $(go.TextBlock,
+              {
+                font: "16px Segoe UI",
+                stroke: "#444",
+                wrap: go.TextBlock.Wrap,
+                maxSize: new go.Size(340, NaN),
+                textAlign: "left",
+                margin: new go.Margin(0, 0, 4, 0)
+              },
+              new go.Binding("text", "description")
             )
-        }
-      );
-
-    myDiagram.linkTemplate =
-      $(go.Link,
-        { routing: go.Link.Orthogonal, corner: 8 },
-        $(go.Shape, { strokeWidth: 2, stroke: "#888" }),
-        $(go.Shape, { toArrow: "Standard", stroke: null, fill: "#888" })
-      );
-
-    myDiagram.model = new go.GraphLinksModel(
-      [
-        { key: 1, text: "Application Intake & Storage", color: "#BDE5F8", description: "Applications created by Bellmont staff, tagged with intake session (Sept/Nov/March), and stored with documents." },
-        { key: 2, text: "Document Forwarding to LHU", color: "#FADBD8", description: "Documents sent to LHU for internal university enrollment." },
-        { key: 3, text: "LHU Enrollment Confirmation", color: "#FADBD8", description: "LHU enrolls student and sends back confirmation." },
-        { key: 4, text: "Bellmont SIS Enrollment", color: "#BDE5F8", description: "Student enrolled into Bellmont's SIS post LHU confirmation." },
-        { key: 5, text: "Group Assignment & Teams Setup", color: "#BDE5F8", description: "Student assigned to groups, Microsoft Teams class links created." },
-        { key: 6, text: "Attendance Sent to LHU", color: "#BDE5F8", description: "Attendance sent to LHU via Attendance System or Google Sheets." },
-        { key: 7, text: "Attendance Feedback from LHU", color: "#FADBD8", description: "LHU returns verified attendance to Bellmont." },
-        { key: 8, text: "Assessment Submission (Moodle)", color: "#D6EAF8", description: "Students submit assessments on Moodle." },
-        { key: 9, text: "Results from LHU", color: "#FADBD8", description: "Marks finalized by LHU, shared via Google Sheets." },
-        { key: 10, text: "Result Import to Bellmont", color: "#BDE5F8", description: "Bellmont imports final results into SIS." },
-        { key: 11, text: "Student Progression", color: "#BDE5F8", description: "Passed students promoted to next academic level." },
-        { key: 12, text: "Cycle Repeats for New Intake", color: "#BDE5F8", description: "Process repeats for next student intake." }
-      ],
-      [
-        { from: 1, to: 2 },
-        { from: 2, to: 3 },
-        { from: 3, to: 4 },
-        { from: 4, to: 5 },
-        { from: 5, to: 6 },
-        { from: 6, to: 7 },
-        { from: 5, to: 8 },
-        { from: 8, to: 9 },
-        { from: 9, to: 10 },
-        { from: 10, to: 11 },
-        { from: 11, to: 12 }
-      ]
-    );
-  }
-  init();
-</script>
+          )
+        );
+  
+      diagram.linkTemplate =
+        $(go.Link,
+          {
+            routing: go.Link.Orthogonal,
+            corner: 10,
+            curve: go.Link.JumpOver
+          },
+          $(go.Shape, { strokeWidth: 2.5, stroke: "#888" }),
+          $(go.Shape, { toArrow: "Standard", fill: "#888", stroke: null })
+        );
+  
+      diagram.model = new go.GraphLinksModel(nodeDataArray, linkDataArray);
+    }
+  
+    const currentNodes = [
+      {
+        key: 1, icon: "📝", text: "Student applies in SIS",
+        description: "Admin collects documents and student data manually, leading to redundancy and delays."
+      },
+      {
+        key: 2, icon: "📤", text: "Data exported to Google Drive",
+        description: "Files are zipped and uploaded manually for LHU, causing discrepancies and no real-time sync."
+      },
+      {
+        key: 3, icon: "🔍", text: "LHU verifies enrollment",
+        description: "LHU reviews shared files and enters data into SITS manually, risking errors and GDPR violations."
+      },
+      {
+        key: 4, icon: "📊", text: "Status added to Google Sheet",
+        description: "LHU updates enrollment status on shared Google Sheets, creating potential for data mismatch."
+      },
+      {
+        key: 5, icon: "✍️", text: "Bellmont updates SIS manually",
+        description: "Staff manually transfers data from Google Sheets to SIS, adding redundant work and risk of mistakes."
+      },
+      {
+        key: 6, icon: "📧", text: "Teams links shared by email",
+        description: "Groups and Teams are created manually and shared via email, causing delays and communication gaps."
+      },
+      {
+        key: 7, icon: "🕒", text: "Attendance tracked manually",
+        description: "Attendance is recorded on paper or emailed Sheets, lacking automation and real-time updates."
+      },
+      {
+        key: 8, icon: "📩", text: "LHU returns attendance",
+        description: "Marked attendance is sent back through Google Sheets, risking discrepancies and data loss."
+      },
+      {
+        key: 9, icon: "💻", text: "Student submits on Moodle",
+        description: "Students submit assignments on Moodle, but data sync with SIS is manual or non-existent."
+      },
+      {
+        key: 10, icon: "📄", text: "Marks entered by LHU",
+        description: "Final marks are posted manually on Google Sheets, causing delays and potential GDPR risks."
+      },
+      {
+        key: 11, icon: "🖊️", text: "Bellmont inputs marks in SIS",
+        description: "Manual entry of final marks leads to duplication of effort and error risk."
+      },
+      {
+        key: 12, icon: "📈", text: "Progression handled manually",
+        description: "Student progression is tracked and enrolled manually, lacking automation and real-time data."
+      }
+    ];
+  
+    const proposedNodes = [
+      {
+        key: 1, icon: "🧑‍💻", text: "Student applies via SIS",
+        description: "Students upload applications and documents digitally, reducing paperwork and errors."
+      },
+      {
+        key: 2, icon: "🔗", text: "SIS sends data to LHU via API",
+        description: "Data is shared instantly and securely with LHU through automated API integration."
+      },
+      {
+        key: 3, icon: "✅", text: "LHU confirms enrollment",
+        description: "LHU's SITS system confirms enrollments in real-time, minimizing delays and discrepancies."
+      },
+      {
+        key: 4, icon: "🔄", text: "Bellmont SIS auto-updated",
+        description: "Student status syncs automatically with Bellmont SIS, ensuring accurate real-time data."
+      },
+      {
+        key: 5, icon: "👥", text: "Auto group + Teams setup",
+        description: "SIS automatically creates Teams links and assigns students to groups without manual work."
+      },
+      {
+        key: 6, icon: "📅", text: "Attendance logged in SIS",
+        description: "Attendance is recorded digitally on tablets or desktops and synced instantly with LHU."
+      },
+      {
+        key: 7, icon: "📥", text: "SIS fetches Moodle data",
+        description: "Assignment submissions from Moodle are synced automatically with Bellmont SIS."
+      },
+      {
+        key: 8, icon: "📊", text: "Final marks auto-updated",
+        description: "Final results from LHU are pushed into SIS automatically, eliminating manual data entry."
+      },
+      {
+        key: 9, icon: "⏭️", text: "Progression auto-triggered",
+        description: "Eligible students are promoted automatically based on synced academic results."
+      },
+      {
+        key: 10, icon: "🚫", text: "No manual steps",
+        description: "All processes are fully automated, synchronized, and compliant—reducing errors and GDPR risks."
+      }
+    ];
+  
+    const currentLinks = [
+      { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 },
+      { from: 4, to: 5 }, { from: 5, to: 6 }, { from: 6, to: 7 },
+      { from: 7, to: 8 }, { from: 6, to: 9 }, { from: 9, to: 10 },
+      { from: 10, to: 11 }, { from: 11, to: 12 }
+    ];
+  
+    const proposedLinks = [
+      { from: 1, to: 2 }, { from: 2, to: 3 }, { from: 3, to: 4 },
+      { from: 4, to: 5 }, { from: 5, to: 6 }, { from: 5, to: 7 },
+      { from: 7, to: 8 }, { from: 8, to: 9 }, { from: 9, to: 10 }
+    ];
+  
+    // Render both diagrams
+    createDiagram("currentDiagram", currentNodes, currentLinks, "#dc3545", "#f8d7da");
+    createDiagram("proposedDiagram", proposedNodes, proposedLinks, "#28a745", "#d4edda");
+  </script>
+  
+  
+  
 </body>
 </html>
