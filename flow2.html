@@ -1,1 +1,292 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bellmont College Enrollment Lifecycle</title>
+  <script type="module">
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+    mermaid.initialize({
+      startOnLoad: true,
+      flowchart: {
+        nodeSpacing: 100,  // more spacing horizontally
+        rankSpacing: 100,  // more spacing vertically
+        defaultRenderer: 'dagre',
+      },
+      themeVariables: {
+        fontSize: '22px',  // bigger font size for node text
+        fontFamily: `'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`,
+      }
+    });
+  </script>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f8fb;
+    }
+    .diagram-box {
+      height: 950px;
+      background-color: white;
+      border: 1px solid #d1d1d1;
+      border-radius: 10px;
+      overflow: auto;
+      padding: 15px;
+    }
+    .section-header {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 24px;
+    }
+    .description,
+    .challenges,
+    .vision {
+      max-width: 1200px;
+      margin: 0 auto 40px auto;
+      font-size: 15px; /* increased from 16px */
+      line-height: 1.6;
+      color: #333;
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    ul {
+      padding-left: 20px;
+    }
+    /* Mermaid node text styling */
+    .mermaid .node text {
+      font-size: 22px !important;
+      font-weight: 700; /* make text bold */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      white-space: normal !important;
+      line-height: 1.4;
+    }
+    /* Mermaid node rectangle styling */
+    .mermaid .node rect {
+      rx: 18;
+      ry: 18;
+      fill: #fefefe !important;
+      stroke-width: 2.5px;
+      /* Force min width and height for bigger node boxes */
+      min-width: 350px !important;
+      min-height: 130px !important;
+    }
+    /* ClassDef for bigNode with padding */
+    .mermaid .bigNode rect {
+      padding: 40px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="section-header">Bellmont College – Enrollment Lifecycle</h2>
+    <div class="description">
+      <p>
+        This document presents a comparison between the current manual
+        enrollment system and the proposed integrated solution at Bellmont
+        College in partnership with Liverpool Hope University (LHU).
+      </p>
+    </div>
+
+    <div class="row my-4">
+      <!-- Challenges Section -->
+
+      <h4 class="section-header">Current System Challenges vs Proposed Automated Solution</h4>
+
+      <div class="col-md-6">
+        <div
+          class="challenges h-100 shadow-sm p-4 bg-white rounded-3 animate__animated animate__fadeInLeft"
+        >
+          <h5 class="text-danger mb-4" style="color: #78011C !important;">
+            🚧 Key Challenges in Current System
+          </h5>
+          <ul class="list-unstyled">
+            <li class="mb-3">
+              <h6><span class="me-2">📊</span><strong>Manual Data Collection</strong></h6>
+              <ul class="ms-4">
+                <li>📥 Student information is collected manually through forms or email.</li>
+                <li>🔁 Results in repeated data entry and poor data consistency.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">🗂️</span><strong>Fragmented File Sharing</strong></h6>
+              <ul class="ms-4">
+                <li>📦 Files are zipped and shared via Google Drive or email.</li>
+                <li>📉 No tracking or visibility once shared externally.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">📉</span><strong>Inaccurate Attendance Tracking</strong></h6>
+              <ul class="ms-4">
+                <li>📝 Attendance taken on paper or spreadsheets.</li>
+                <li>🔍 Discrepancies common due to human errors and delays.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">🔄</span><strong>No Real-Time Synchronization</strong></h6>
+              <ul class="ms-4">
+                <li>🧩 Bellmont SIS and LHU SITS function in isolation.</li>
+                <li>📉 Delays and misalignment across systems.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">📪</span><strong>Lack of Communication Flow</strong></h6>
+              <ul class="ms-4">
+                <li>📬 Heavily dependent on back-and-forth emails.</li>
+                <li>⏱️ Slows down response time and updates.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">⚠️</span><strong>GDPR Vulnerabilities</strong></h6>
+              <ul class="ms-4">
+                <li>🔓 Files shared on unsecured platforms.</li>
+                <li>📂 No audit trail or permissions tracking.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">⏳</span><strong>Lack of Automation</strong></h6>
+              <ul class="ms-4">
+                <li>👩‍💻 All processes depend on human input.</li>
+                <li>📉 Increased risk of delay, error, and burnout.</li>
+              </ul>
+            </li>
+          </ul>
+          <p class="mt-4" style="margin-top: 49px !important;">
+            <strong>🧩 Final Summary:</strong> Current Enrollment Lifecycle is
+            manual, error-prone, and unsustainable. Without integration, it
+            burdens staff, delays student services, and poses compliance risks.
+          </p>
+        </div>
+      </div>
+
+      <!-- Vision Section -->
+      <div class="col-md-6">
+        <div
+          class="vision h-100 shadow-sm p-4 bg-white rounded-3 animate__animated animate__fadeInRight"
+        >
+          <h5 class="text-success mb-4" style="color: #1C356E !important;">
+            ✅ Proposed Unified & Automated System
+          </h5>
+          <ul class="list-unstyled">
+            <li class="mb-3">
+              <h6><span class="me-2">🔗</span><strong>API Integration Between SIS &amp; SITS</strong></h6>
+              <ul class="ms-4">
+                <li>📥 <strong>Enrollment API:</strong> Real-time sync of applications and registrations.</li>
+                <li>📊 <strong>Assessment API:</strong> LHU marks are automatically reflected in SIS.</li>
+                <li>📆 <strong>Attendance API:</strong> Seamless two-way attendance flow.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">🧭</span><strong>Centralized Student Lifecycle</strong></h6>
+              <ul class="ms-4">
+                <li>📎 Submit and track all records from a single dashboard.</li>
+                <li>📁 No more manual uploads or scattered storage.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">👥</span><strong>Integrated Class Setup</strong></h6>
+              <ul class="ms-4">
+                <li>🔗 Teams links generated and distributed automatically.</li>
+                <li>🎓 Students grouped directly via SIS.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">📅</span><strong>Digital Attendance</strong></h6>
+              <ul class="ms-4">
+                <li>🖐️ Marked via Desktop/mobile/tablet and synced instantly.</li>
+                <li>📤 Sent to LHU without staff intervention.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">📚</span><strong>Assessment Tracking</strong></h6>
+              <ul class="ms-4">
+                <li>📝 View Moodle submissions directly in SIS.</li>
+                <li>🔁 Track feedback and marks automatically.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">⏭️</span><strong>Automated Progression</strong></h6>
+              <ul class="ms-4">
+                <li>📈 Final marks trigger next-year enrollment instantly.</li>
+                <li>📌 Saves staff time and ensures accurate outcomes.</li>
+              </ul>
+            </li>
+            <li class="mb-3">
+              <h6><span class="me-2">🔐</span><strong>GDPR Compliance &amp; Security</strong></h6>
+              <ul class="ms-4">
+                <li>🛡️ Secure, encrypted systems with audit logs.</li>
+                <li>🧾 Permission-based access to protect data.</li>
+              </ul>
+            </li>
+          </ul>
+          <p class="mt-4">
+            <strong>🔗 Final Vision:</strong> A fully automated, secure, and
+            GDPR-compliant system where every student interaction is synced in
+            real time—empowering both staff and students with clarity, speed,
+            and confidence.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="text-primary text-center mb-3">Current Manual System</h4>
+        <div class="diagram-box">
+          <pre class="mermaid">
+graph TD
+A["📝 Student applies in SIS<br>Admin collects documents and student data manually,<br>leading to redundancy and delays."]:::bigNode --> 
+B["📤 Data exported to Google Drive<br>Files are zipped and uploaded manually for LHU,<br>causing discrepancies and no real-time sync."]:::bigNode --> 
+C["🔍 LHU verifies enrollment<br>LHU reviews shared files and enters data into SITS manually,<br>risking errors and GDPR violations."]:::bigNode --> 
+D["📊 Status added to Google Sheet<br>LHU updates enrollment status on shared Google Sheets,<br>creating potential for data mismatch."]:::bigNode --> 
+E["✍️ Bellmont updates SIS manually<br>Staff manually transfers data from Google Sheets to SIS,<br>adding redundant work and risk of mistakes."]:::bigNode --> 
+F["📧 Teams links shared by email<br>Groups and Teams are created manually and shared via email,<br>causing delays and communication gaps."]:::bigNode --> 
+G["🕒 Attendance tracked manually<br>Attendance is recorded on paper or emailed Sheets,<br>lacking automation and real-time updates."]:::bigNode --> 
+H["📩 LHU returns attendance<br>Marked attendance is sent back through Google Sheets,<br>risking discrepancies and data loss."]:::bigNode
+
+F --> I["💻 Student submits on Moodle<br>Students submit assignments on Moodle,<br>but data sync with SIS is manual or non-existent."]:::bigNode
+I --> J["📄 Marks entered by LHU<br>Final marks are posted manually on Google Sheets,<br>causing delays and potential GDPR risks."]:::bigNode
+J --> K["🖊️ Bellmont inputs marks in SIS<br>Manual entry of final marks leads to duplication of effort and error risk."]:::bigNode
+K --> L["📈 Progression handled manually<br>Student progression is tracked and enrolled manually,<br>lacking automation and real-time data."]:::bigNode
+
+classDef bigNode fill:#ffffff,stroke:#ccc,stroke-width:2px,rx:18,ry:18,padding:40px,font-size:22px,font-weight:bold;
+          </pre>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h4 class="text-success text-center mb-3">Proposed Integrated System</h4>
+        <div class="diagram-box">
+          <pre class="mermaid">
+graph TD
+A["🧑‍💻 Student applies via SIS<br>Students upload applications and documents digitally,<br>reducing paperwork and errors."]:::bigNode --> 
+B["🔗 SIS sends data to LHU via API<br>Data is shared instantly and securely with LHU<br>through automated API integration."]:::bigNode --> 
+C["✅ LHU confirms enrollment<br>LHU's SITS system confirms enrollments in real-time,<br>minimizing delays and discrepancies."]:::bigNode --> 
+D["🔄 Bellmont SIS auto-updated<br>Student status syncs automatically with Bellmont SIS,<br>ensuring accurate real-time data."]:::bigNode --> 
+E["👥 Auto group + Teams setup<br>SIS automatically creates Teams links and assigns students<br>to groups without manual work."]:::bigNode --> 
+F["📅 Attendance logged in SIS<br>Attendance is recorded digitally on tablets or desktops<br>and synced instantly with LHU."]:::bigNode --> 
+E --> G["📥 SIS fetches Moodle data<br>Assignment submissions from Moodle are synced<br>automatically with Bellmont SIS."]:::bigNode
+G --> H["📊 Final marks auto-updated<br>Final results from LHU are pushed into SIS automatically,<br>eliminating manual data entry."]:::bigNode
+H --> I["⏭️ Progression auto-triggered<br>Eligible students are promoted automatically based<br>on synced academic results."]:::bigNode
+I --> J["🚫 No manual steps<br>All processes are fully automated, synchronized,<br>and compliant—reducing errors and GDPR risks."]:::bigNode
+
+classDef bigNode fill:#ffffff,stroke:#ccc,stroke-width:2px,rx:18,ry:18,padding:40px,font-size:22px,font-weight:bold;
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
